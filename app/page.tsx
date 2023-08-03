@@ -5,7 +5,7 @@ import Graph from "@components/graph/graph"
 export default function Page() {
   return (
     <div>
-      <Graph></Graph>
+      <Graph chapter={6}></Graph>
     </div>
 
   )

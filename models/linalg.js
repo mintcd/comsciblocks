@@ -24,7 +24,7 @@ export default [
             },
             {
                 id: '6.3',
-                content: "$$\\textbf{Theorem 6.2}$$ Define $||x||=\\sqrt{\\langle x,x\\rangle}$ to be the norm of $x$. Then for all $x,y\\in V$ and $c\\in\\mathbb{F}$, we have $\\\\ \\text{(a) }$ $||cx||=|c|\\cdot||x||$. $\\\\ \\text{(b) }$ $||x||\\ge 0$, equality holds if and only if $|x|=0$ $\\\\ \\text{(c) }$ (Cauchy-Schwarz inequality) $|\\langle x,y\\rangle| \\le ||x||\\cdot||y||.$ $\\\\ \\text{(d) }$ (Triangle inequality) $||x+y||\\le ||x||+||y||.$",
+                content: "$$\\textbf{Theorem 6.3}$$ Vectors $x$ and $y$ are orthogonal if $\\langle x,y\\rangle=0$. A vector",
                 depending: []
             },
             {
