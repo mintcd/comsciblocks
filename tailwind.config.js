@@ -4,15 +4,30 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./public/**/*.html",
+    "./node_modules/flowbite-react/**/*.js",
+    "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+        satoshi: ['Satoshi', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
+      colors: {
+        'primary-orange': '#FF5722',
+        'vueGreen': '#42d392',
+        'vueBlue': '#647eff',
+        'background': '#415DA2',
+        'silver': '#C0C0C0', // silver
+        'button': '#3399FF', //vibrant blue
+        'teal': '#008080',
+        'middlegreen': '#4cb8b4'
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require("tw-elements/dist/plugin")
+  ],
+  darkMode: "class",
 }
