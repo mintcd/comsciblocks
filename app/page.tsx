@@ -1,13 +1,7 @@
 'use client'
 
-import Graph from "@components/graph/graph"
+import Nav from "@components/nav"
 
-export default function Page() {
-  return (
-    <div>
-      <Graph chapter={6}></Graph>
-    </div>
-
-  )
+export default function Home() {
+  return <Nav />
 }
-

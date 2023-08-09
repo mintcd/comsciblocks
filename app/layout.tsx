@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 // import Nav from '../components/Nav'
 
 export const metadata = {
-  title: 'Computer Science blocks',
+  title: 'Computer Science Blocks',
   description: 'From Physics and Mathematics to Computer Science',
 };
 
@@ -16,8 +16,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" rel="preload">
       <body className="">
-        <div className="gradient"></div>
-        <main className="app">{children}</main>
+        <main className="m-16">{children}</main>
       </body>
     </html>
   );

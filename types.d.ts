@@ -1,6 +1,12 @@
 declare module 'react-latex'
+declare module 'd3'
 
-type position = {
-    x: number
-    y: number
+type statement = {
+    id: string,
+    type: string,
+    name?: string,
+    content: string,
+    short?: string,
+    proof?: string,
+    depending?: Array<string>,
 }
