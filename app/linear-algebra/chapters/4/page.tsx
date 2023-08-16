@@ -1,7 +1,6 @@
 import Latex from 'react-latex-next';
 import 'katex/dist/katex.min.css';
 import linalg from '@models/linalg';
-import { useState } from 'react';
 
 export default function Chapter() {
 

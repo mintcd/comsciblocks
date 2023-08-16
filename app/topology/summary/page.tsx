@@ -2,19 +2,17 @@
 
 import Xarrow, { Xwrapper } from 'react-xarrows';
 import topology from '@models/topology';
-import Latex from 'react-latex-next';
-import 'katex/dist/katex.min.css';
-import { forwardRef, RefObject } from 'react';
+import Node from "@components/node"
 
 export default function Graph() {
     const statements = topology.flatMap(item => item.statements)
     const dependencies = statements.flatMap((item) => item.depending.map((depended) => [depended, item.id]));
 
     return (
-        <div className='grid grid-cols-3'>
+        <div className='grid grid-cols-3 text-sm'>
             <Xwrapper>
                 {statements.map((item) => (
-                    <Block id={item.id} item={item} includeId={true} includeName={true} />
+                    <Node id={item.id} label={item.name} content={item.content} />
                 ))}
                 {dependencies.map((item) => (
                     <Xarrow startAnchor='auto' endAnchor='auto' headSize={4} start={item[0]} end={item[1]} />
@@ -25,49 +23,3 @@ export default function Graph() {
 }
 
 
-const Block = ({ id, item, includeId, includeName }:
-    { id: string, item: statement, includeId: boolean, includeName: boolean }) => {
-    const typeClassNames = {
-        theorem: 'bg-[#C3E3E7]',
-        definition: 'bg-[#c4e0b0]',
-        lemma: 'bg-[#FFD9B7]'
-    };
-
-    function handleClick() {
-        console.log(`Proof of`, id);
-    }
-
-    const typeClassName = (typeClassNames as { [key: string]: string })[item.type] || '';
-
-    let content = `${includeId ? `$$\\textbf{${(item.type.charAt(0).toUpperCase() + item.type.slice(1))} ${id}}$$` : ""} 
-                    ${includeName ? `\\textbf{${item.name}.}$ }` : ""} ${item.content}`;
-
-    if (includeId) {
-        if (includeName) {
-            if (item.type === 'theorem') item.content = `$$\\textbf{Theorem ${id}}$$ $\\textbf{${item.name}.}$ ${content}`
-            else content = `$$\\textbf{Definition ${id}}$$ ${content}`
-        }
-
-    }
-
-    return (
-        <div
-            id={id}
-            className={`border-grey border-solid border-2 rounded-[20px] p-5 my-5 mx-[20px] hover:opacity-50 ${typeClassName}`}
-            onClick={handleClick}
-        >
-            <Node content={content} />
-        </div>
-    );
-};
-
-const Node = forwardRef<HTMLDivElement, { content: string }>(({ content }, ref) => {
-    return (
-        <div
-            ref={ref}
-            className="w-[1/4] flex items-center justify-center text-justify text-sm"
-        >
-            <Latex>{content}</Latex>
-        </div>
-    );
-});

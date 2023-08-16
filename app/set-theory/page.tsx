@@ -39,9 +39,10 @@ const Block = ({ id, item, includeId, includeName }:
 
     const typeClassName = (typeClassNames as { [key: string]: string })[item.type] || '';
 
-    let content = `${includeId ? `$$\\textbf{${(item.type.charAt(0).toUpperCase() + item.type.slice(1))} ${id}}$$` : ""} 
-                    ${includeName && item.name && `$\\textbf{${item.name}.}$` || ""} ${item.short || item.content}`;
+    console.log(item.id, item.content)
 
+    let content = `${includeId ? `$$\\textbf{${(item.type.charAt(0).toUpperCase() + item.type.slice(1))} ${id}}$$` : ""} 
+                    ${includeName && item.name && `$\\textbf{${item.name}.}$` || ""} ${item.short === undefined ? "Content" : "short"}`
 
     return (
         <div

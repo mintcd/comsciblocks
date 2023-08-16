@@ -40,7 +40,7 @@ const Block = ({ id, item, includeId, includeName }:
     const typeClassName = (typeClassNames as { [key: string]: string })[item.type] || '';
 
     const content = `${includeId ? `$$\\textbf{${item.type.charAt(0).toUpperCase() + item.type.slice(1)} ${id}}$$` : ""} 
-                    ${includeName ? item.name ? `$\\textbf{${item.name}.}$` : "" : ""} ${item.short}`;
+                    ${includeName ? item.name ? `$\\textbf{${item.name}.}$` : "" : ""} ${item.short || item.content}`;
 
     return (
         <div

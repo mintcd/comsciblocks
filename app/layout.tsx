@@ -1,7 +1,9 @@
+'use client'
+
 import React, { ReactNode } from 'react';
 import '@styles/global.css';
 import { Inter } from 'next/font/google';
-// import Nav from '../components/Nav'
+import Nav from '@/components/nav'
 
 export const metadata = {
   title: 'Computer Science Blocks',
@@ -16,7 +18,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" rel="preload">
       <body className="">
-        <main className="m-16">{children}</main>
+        <main className="m-16">
+          <Nav />
+          {children}
+        </main>
       </body>
     </html>
   );

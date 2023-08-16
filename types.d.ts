@@ -1,7 +1,7 @@
 declare module 'react-latex'
 declare module 'd3'
 
-type statement = {
+type Statement = {
     id: string,
     type: string,
     name?: string,
@@ -10,3 +10,12 @@ type statement = {
     proof?: string,
     depending?: Array<string>,
 }
+
+type GraphNode = {
+    nodeId: number,
+    label: string = "",
+    content: string = "",
+    color: string = "blue",
+    opacity: string = "200",
+    type: string = "text"
+};

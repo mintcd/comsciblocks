@@ -67,7 +67,12 @@ export default function Nav() {
             >
               <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                 <li>
-                  <a href="/linear-algebra" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <a href="/abstract-algebra" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Abstract algebra
+                  </a>
+                </li>
+                <li>
+                  <a href="/linear-algebra/chapters/0" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Linear algebra
                   </a>
                 </li>

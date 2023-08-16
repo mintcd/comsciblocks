@@ -1,73 +1,84 @@
-"use client"
-
+import React, { useEffect, useRef, useState } from 'react';
 import Xarrow, { Xwrapper } from 'react-xarrows';
-import topology from '@models/topology';
+import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 import 'katex/dist/katex.min.css';
-import { forwardRef, RefObject } from 'react';
-
-export default function Graph() {
-    const statements = topology.flatMap(item => item.statements)
-    const dependencies = statements.flatMap((item) => item.depending.map((depended) => [depended, item.id]));
-
-    return (
-        <div className='grid grid-cols-3'>
-            <Xwrapper>
-                {statements.map((item) => (
-                    <Block id={item.id} item={item} includeId={true} includeName={true} />
-                ))}
-                {dependencies.map((item) => (
-                    <Xarrow startAnchor='auto' endAnchor='auto' headSize={4} start={item[0]} end={item[1]} />
-                ))}
-            </Xwrapper>
-        </div>
-    );
-}
 
 
-const Block = ({ id, item, includeId, includeName }:
-    { id: string, item: statement, includeId: boolean, includeName: boolean }) => {
+function Node(props: GraphNode) {
     const typeClassNames = {
         theorem: 'bg-[#C3E3E7]',
         definition: 'bg-[#c4e0b0]',
         lemma: 'bg-[#FFD9B7]'
     };
 
-    function handleClick() {
-        console.log(`Proof of`, id);
-    }
+    const typeClassName = (typeClassNames as { [key: string]: string })[props.type] || '';
 
-    const typeClassName = (typeClassNames as { [key: string]: string })[item.type] || '';
+    return (
+        <div
+            className={`flex text-sm border-grey ${`bg-${props.color}-${props.opacity}`} border-solid border-2 rounded-[50%] p-3 m-[20px] hover:opacity-50 cursor-pointer max-w-[200px] justify-center items-center text-center ${typeClassName} aspect-auto`}
+        >
+            <Latex>{`${props.label} ${props.content}`}</Latex>
+        </div>
+    );
+}
 
-    let content = `${includeId ? `$$\\textbf{${(item.type.charAt(0).toUpperCase() + item.type.slice(1))} ${id}}$$` : ""} 
-                    ${includeName ? `\\textbf{${item.name}.}$ }` : ""} ${item.content}`;
+Node.defaultProps = {
+    label: "",
+    content: "",
+    color: "blue",
+    opacity: "200",
+    type: "text"
+}
 
-    if (includeId) {
-        if (includeName) {
-            if (item.type === 'theorem') item.content = `$$\\textbf{Theorem ${id}}$$ $\\textbf{${item.name}.}$ ${content}`
-            else content = `$$\\textbf{Definition ${id}}$$ ${content}`
+export default function Graph() {
+    const nodeRefs = useRef<{ [key: number]: React.RefObject<HTMLDivElement> }>({});
+    const [positions, setPositions] = useState({})
+
+    useEffect(() => {
+        console.log(edges)
+        for (const nodeId in nodeRefs.current) {
+            const nodeRef = nodeRefs.current[nodeId];
+            if (nodeRef.current) {
+                const nodeHeight = nodeRef.current.offsetHeight;
+                const nodeWidth = nodeRef.current.offsetWidth;
+                console.log(`Node ${nodeId} - Height: ${nodeHeight}px, Width: ${nodeWidth}px`);
+            }
         }
+    }, []); // Empty dependency array to run the effect once
 
-    }
+    const nodes = [
+        {
+            id: 1, label: "1"
+        },
+        {
+            id: 2, label: "2"
+        },
+        {
+            id: 3, label: "3"
+        },
+    ];
+
+    const edges = [
+        { src: 1, des: 2 }
+    ]
 
     return (
-        <div
-            id={id}
-            className={`border-grey border-solid border-2 rounded-[20px] p-5 my-5 mx-[20px] hover:opacity-50 ${typeClassName}`}
-            onClick={handleClick}
-        >
-            <Node content={content} />
+        <div>
+            <Xwrapper>
+                {nodes.map(node => {
+                    const nodeRef = React.createRef<HTMLDivElement>(); // Create a ref for each node
+                    nodeRefs.current[node.id] = nodeRef; // Assign the ref to the nodeRefs object
+                    return (
+                        <div className="absolute w-max left-[200px]" key={node.id} ref={nodeRef}> {/* Assign the ref to the div */}
+                            <Node nodeId={node.id} label={node.label} />
+                        </div>
+                    );
+                })}
+            </Xwrapper>
         </div>
     );
-};
+}
 
-const Node = forwardRef<HTMLDivElement, { content: string }>(({ content }, ref) => {
-    return (
-        <div
-            ref={ref}
-            className="w-[1/4] flex items-center justify-center text-justify text-sm"
-        >
-            <Latex>{content}</Latex>
-        </div>
-    );
-});
+
+

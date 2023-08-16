@@ -1,7 +1,11 @@
-'use client'
+"use client"
 
-import Nav from "@components/nav"
+import Graph from "@components/graph"
 
 export default function Home() {
-  return <Nav />
+  return (
+    <Graph />
+  );
 }
+
+
