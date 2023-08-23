@@ -18,13 +18,13 @@ export default function Chapter() {
             </div>
 
 
-            <div className="border rounded p-4 bg-green-100 mb-4">
+            {/* <div className="border rounded p-4 bg-green-100 mb-4">
                 <span className="text-lg font-semibold mb-2"> Theorem. </span>
                 <Latex>{theorem41.content}</Latex>
             </div>
 
             <i> Proof. </i>
-            <Latex>{theorem41.proof}</Latex>
+            <Latex>{theorem41.proof}</Latex> */}
 
 
             <div className="border rounded p-4 bg-blue-100 mb-4">
