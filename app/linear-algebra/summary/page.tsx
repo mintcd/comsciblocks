@@ -3,7 +3,6 @@
 import Xarrow, { Xwrapper } from 'react-xarrows';
 import linalg from '@models/linalg';
 import 'katex/dist/katex.min.css';
-import Node from "@components/node";
 
 
 export default function Graph() {
@@ -12,14 +11,7 @@ export default function Graph() {
 
     return (
         <div className='flex flex-wrap'>
-            <Xwrapper>
-                {statements.map((item) => (
-                    <Node id={item.id} item={item} includeId={false} includeName={true} includeContent={false} />
-                ))}
-                {dependencies.map((item) => (
-                    <Xarrow startAnchor='auto' endAnchor='auto' strokeWidth={2} headSize={4} start={item[0]} end={item[1]} />
-                ))}
-            </Xwrapper>
+            Hello from Linear algebra
         </div>
     );
 }
