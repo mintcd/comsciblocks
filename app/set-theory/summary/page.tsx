@@ -26,7 +26,7 @@ export default function Graph() {
 
 
 const Block = ({ id, item, includeId, includeName }:
-    { id: string, item: statement, includeId: boolean, includeName: boolean }) => {
+    { id: string, item: Statement, includeId: boolean, includeName: boolean }) => {
     const typeClassNames = {
         theorem: 'bg-[#C3E3E7]',
         definition: 'bg-[#c4e0b0]',

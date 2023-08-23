@@ -3,7 +3,6 @@
 import Latex from 'react-latex-next';
 import 'katex/dist/katex.min.css';
 import Sidebar from '@app/linear-algebra/sidebar';
-import Xarrow, { Xwrapper } from 'react-xarrows';
 import Nav from "@components/nav"
 
 export default function Chapter() {
