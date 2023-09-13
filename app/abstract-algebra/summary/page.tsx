@@ -1,6 +1,5 @@
 "use client"
 
-import Xarrow, { Xwrapper } from 'react-xarrows';
 import absalg from '@models/absalg';
 
 export default function Graph() {
